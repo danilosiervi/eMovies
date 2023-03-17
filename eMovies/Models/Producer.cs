@@ -10,4 +10,6 @@ public class Producer
     public string Name { get; set; }
     public string ProfilePictureURL { get; set; }
     public string Bio { get; set; }
+
+    public ICollection<Movie> Movies { get; set; }
 }

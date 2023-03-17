@@ -5,6 +5,11 @@ namespace eMovies.Models;
 
 public class Movie
 {
+    public Movie()
+    {
+        Actors = new HashSet<ActorMovie>();
+    }
+
     [Key]
     public int Id { get; set; }
 
@@ -15,4 +20,12 @@ public class Movie
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public MovieCategory Category { get; set; }
+
+    public ICollection<ActorMovie> Actors { get; set; }
+
+    public int CinemaId { get; set; }
+    public Cinema Cinema { get; set; }
+
+    public int ProducerId { get; set; }
+    public Producer Producer { get; set; }
 }

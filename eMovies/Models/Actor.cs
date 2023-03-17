@@ -10,4 +10,6 @@ public class Actor
     public string Name { get; set; }
     public string ProfilePictureURL { get; set; }
     public string Bio { get; set; }
+
+    public ICollection<ActorMovie> Movies { get; set; }
 }
