@@ -9,7 +9,7 @@ public class Cinema
 
     public string Name { get; set; }
     public string Logo { get; set; }
-    public string Bio { get; set; }
+    public string Description { get; set; }
 
     public ICollection<Movie> Movies { get; set; }
 }

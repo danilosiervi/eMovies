@@ -12,7 +12,7 @@ using eMovies.Data;
 namespace eMovies.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230317173358_Initial")]
+    [Migration("20230317174831_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -73,7 +73,7 @@ namespace eMovies.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Bio")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
