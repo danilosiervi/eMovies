@@ -26,6 +26,6 @@ public class Movie
     public int CinemaId { get; set; }
     public Cinema Cinema { get; set; }
 
-    public int ProducerId { get; set; }
-    public Producer Producer { get; set; }
+    public int DirectorId { get; set; }
+    public Director Director { get; set; }
 }

@@ -31,14 +31,14 @@ public class AppDbContext : DbContext
             .HasForeignKey(m => m.CinemaId);
 
         modelBuilder.Entity<Movie>()
-            .HasOne(m => m.Producer)
+            .HasOne(m => m.Director)
             .WithMany(p => p.Movies)
-            .HasForeignKey(m => m.ProducerId);
+            .HasForeignKey(m => m.DirectorId);
     }
 
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Actor> Actors { get; set; }
     public DbSet<Cinema> Cinemas { get; set; }
-    public DbSet<Producer> Producers { get; set; }
+    public DbSet<Director> Directors { get; set; }
     public DbSet<ActorMovie> Actors_Movies { get; set; }
 }

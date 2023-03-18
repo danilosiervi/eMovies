@@ -2,7 +2,7 @@
 
 namespace eMovies.Models;
 
-public class Producer
+public class Director
 {
     [Key]
     public int Id { get; set; }
