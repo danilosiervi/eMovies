@@ -6,8 +6,7 @@
 
 <div class="row">
     <div class="col-md-8 offset-md-2">
-
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
@@ -30,14 +29,13 @@
                             @Html.DisplayFor(modelItem => item.Bio)
                         </td>
                         <td class="align-middle">
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a> |
-                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a> |
-                            <a class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
+                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit </a> |
+                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details </a> |
+                            <a class="btn btn-danger text-white"><i class="bi bi-trash"></i>Delete </a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-
     </div>
 </div>
