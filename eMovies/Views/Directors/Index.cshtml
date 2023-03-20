@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Actor>
+﻿@model IEnumerable<Director>
 
 @{
-    ViewData["Title"] = "List of Actors";
+    ViewData["Title"] = "List of Directors";
 }
 
 <div class="row">
@@ -20,7 +20,7 @@
                 {
                     <tr>
                         <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.Name" style="max-width: 150px"/>
+                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.Name" style="max-width: 150px" />
                         </td>
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem => item.Name)
