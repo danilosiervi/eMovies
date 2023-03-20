@@ -15,7 +15,10 @@ public class MoviesController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var data = await _context.Movies.ToListAsync();
+        var data = await _context.Movies
+            .Include(m => m.Cinema)
+            .ToListAsync();
+
         return View(data);
     }
 }
