@@ -1,5 +1,5 @@
-﻿using eMovies.Data.Enums;
-using eMovies.Models;
+﻿using eMovies.Models;
+using eMovies.Models.Enums;
 
 namespace eMovies.Data;
 

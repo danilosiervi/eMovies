@@ -1,4 +1,4 @@
-﻿using eMovies.Data.Enums;
+﻿using eMovies.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace eMovies.Models;

@@ -1,4 +1,4 @@
-﻿namespace eMovies.Data.Enums;
+﻿namespace eMovies.Models.Enums;
 
 public enum MovieCategory
 {
