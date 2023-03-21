@@ -15,24 +15,33 @@ public class ActorsController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var data = await _service.GetAll();
+        var data = await _service.GetAllAsync();
         return View(data);
     }
 
-    public async Task<IActionResult> Create()
+    public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([Bind("Name, ProfilePictureURL, Bio")]Actor actor)
+    public async Task<IActionResult> Create([Bind("Name,ProfilePictureURL,Bio")]Actor actor)
     {
         if (!ModelState.IsValid)
         {
             return View(actor);
         }
 
-        _service.Add(actor);
+        await _service.AddAsync(actor);
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var actor = await _service.GetByIdAsync(id);
+
+        if (actor == null) return View("Empty");
+        return View(actor);
     }
 }

@@ -42,7 +42,7 @@ namespace eMovies.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Producers",
+                name: "Directors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -53,7 +53,7 @@ namespace eMovies.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Producers", x => x.Id);
+                    table.PrimaryKey("PK_Directors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,7 +70,7 @@ namespace eMovies.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Category = table.Column<int>(type: "int", nullable: false),
                     CinemaId = table.Column<int>(type: "int", nullable: false),
-                    ProducerId = table.Column<int>(type: "int", nullable: false)
+                    DirectorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,9 +82,9 @@ namespace eMovies.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movies_Producers_ProducerId",
-                        column: x => x.ProducerId,
-                        principalTable: "Producers",
+                        name: "FK_Movies_Directors_DirectorId",
+                        column: x => x.DirectorId,
+                        principalTable: "Directors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -94,7 +94,8 @@ namespace eMovies.Migrations
                 columns: table => new
                 {
                     ActorId = table.Column<int>(type: "int", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: false)
+                    MovieId = table.Column<int>(type: "int", nullable: false),
+                    Character = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,9 +125,9 @@ namespace eMovies.Migrations
                 column: "CinemaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_ProducerId",
+                name: "IX_Movies_DirectorId",
                 table: "Movies",
-                column: "ProducerId");
+                column: "DirectorId");
         }
 
         /// <inheritdoc />
@@ -145,7 +146,7 @@ namespace eMovies.Migrations
                 name: "Cinemas");
 
             migrationBuilder.DropTable(
-                name: "Producers");
+                name: "Directors");
         }
     }
 }

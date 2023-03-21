@@ -16,7 +16,8 @@ public class Actor
     public string ProfilePictureURL { get; set; }
 
     [Display(Name = "Biography")]
+    [Required(ErrorMessage = "Biography is required")]
     public string Bio { get; set; }
 
-    public ICollection<ActorMovie> Movies { get; set; }
+    public ICollection<ActorMovie>? Movies { get; set; }
 }
