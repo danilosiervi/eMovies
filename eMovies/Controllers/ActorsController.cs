@@ -25,7 +25,7 @@ public class ActorsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([Bind("Name,ProfilePictureURL,Bio")]Actor actor)
+    public async Task<IActionResult> Create([Bind("Name,ProfilePictureURL,Bio")] Actor actor)
     {
         if (!ModelState.IsValid)
         {
@@ -41,7 +41,27 @@ public class ActorsController : Controller
     {
         var actor = await _service.GetByIdAsync(id);
 
-        if (actor == null) return View("Empty");
+        if (actor == null) return View("NotFound");
         return View(actor);
+    }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+        var actor = await _service.GetByIdAsync(id);
+
+        if (actor == null) return View("NotFound");
+        return View(actor);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, Actor actor)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(actor);
+        }
+
+        await _service.UpdateAsync(id, actor);
+        return RedirectToAction(nameof(Index));
     }
 }
