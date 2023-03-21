@@ -20,10 +20,10 @@ public class ActorsService : IActorsService
 
     public async Task<Actor> GetByIdAsync(int id)
     {
-        var result = await _context.Actors
+        var actor = await _context.Actors
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        return result;
+        return actor;
     }
 
     public async Task AddAsync(Actor actor)
@@ -40,8 +40,12 @@ public class ActorsService : IActorsService
         return newActor;
     }
 
-    //public void Delete(int id)
-    //{
+    public async Task DeleteAsync(int id)
+    {
+        var actor = await _context.Actors
+            .FirstOrDefaultAsync(x => x.Id == id);
 
-    //}
+        _context.Actors.Remove(actor);
+        await _context.SaveChangesAsync();
+    }
 }

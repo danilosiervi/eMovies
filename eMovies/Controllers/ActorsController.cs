@@ -1,6 +1,7 @@
 ﻿using eMovies.Models;
 using eMovies.Services.ActorsServices;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace eMovies.Controllers;
 
@@ -62,6 +63,24 @@ public class ActorsController : Controller
         }
 
         await _service.UpdateAsync(id, actor);
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var actor = await _service.GetByIdAsync(id);
+
+        if (actor == null) return View("NotFound");
+        return View(actor);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var actor = await _service.GetByIdAsync(id);
+        if (actor == null) return View("NotFound");
+
+        await _service.DeleteAsync(id);
         return RedirectToAction(nameof(Index));
     }
 }
