@@ -1,4 +1,5 @@
-﻿using eMovies.Services.ActorsServices;
+﻿using eMovies.Models;
+using eMovies.Services.ActorsServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eMovies.Controllers;
@@ -16,5 +17,22 @@ public class ActorsController : Controller
     {
         var data = await _service.GetAll();
         return View(data);
+    }
+
+    public async Task<IActionResult> Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([Bind("Name, ProfilePictureURL, Bio")]Actor actor)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(actor);
+        }
+
+        _service.Add(actor);
+        return RedirectToAction(nameof(Index));
     }
 }

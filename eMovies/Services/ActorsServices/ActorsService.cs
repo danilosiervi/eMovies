@@ -18,23 +18,24 @@ public class ActorsService : IActorsService
         return await _context.Actors.ToListAsync();
     }
 
-    public Actor GetById(int id)
-    {
+    //public Actor GetById(int id)
+    //{
 
-    }
+    //}
 
     public void Add(Actor actor)
     {
-
+        _context.Actors.Add(actor);
+        _context.SaveChanges();
     }
 
-    public Actor Update(int id, Actor newActor)
-    {
+    //public Actor Update(int id, Actor newActor)
+    //{
 
-    }
+    //}
 
-    public void Delete(int id)
-    {
+    //public void Delete(int id)
+    //{
 
-    }
+    //}
 }
