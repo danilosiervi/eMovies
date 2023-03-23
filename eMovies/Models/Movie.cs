@@ -1,9 +1,10 @@
-﻿using eMovies.Models.Enums;
+﻿using eMovies.Data.Base;
+using eMovies.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace eMovies.Models;
 
-public class Movie
+public class Movie : IEntityBase
 {
     public Movie()
     {

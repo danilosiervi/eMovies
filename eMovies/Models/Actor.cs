@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using eMovies.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace eMovies.Models;
 
-public class Actor
+public class Actor : IEntityBase
 {
     [Key]
     public int Id { get; set; }
