@@ -1,7 +1,6 @@
 ﻿using eMovies.Models;
 using eMovies.Services.DirectorsServices;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 
 namespace eMovies.Controllers;
 

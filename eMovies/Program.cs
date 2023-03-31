@@ -2,6 +2,7 @@ using eMovies.Data;
 using eMovies.Services.ActorsServices;
 using eMovies.Services.CinemasServices;
 using eMovies.Services.DirectorsServices;
+using eMovies.Services.MoviesServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(opts =>
 builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped<IDirectorsService, DirectorsService>();
 builder.Services.AddScoped<ICinemasService, CinemaService>();
+builder.Services.AddScoped<IMoviesService, MoviesService>();
 
 var app = builder.Build();
 

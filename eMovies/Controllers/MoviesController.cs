@@ -1,24 +1,34 @@
-﻿using eMovies.Data;
+﻿using eMovies.Models;
+using eMovies.Services.MoviesServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace eMovies.Controllers;
 
 public class MoviesController : Controller
 {
-    private readonly AppDbContext _context;
+    private readonly IMoviesService _services;
 
-    public MoviesController(AppDbContext context)
+    public MoviesController(IMoviesService services)
     {
-        _context = context;
+        _services = services;
     }
 
     public async Task<IActionResult> Index()
     {
-        var data = await _context.Movies
-            .Include(m => m.Cinema)
-            .ToListAsync();
-
+        var data = await _services.GetAllAsync(m => m.Cinema);
         return View(data);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> Details(int id)
+    {
+        var movie = await _services.GetMovieByIdAsync(id);
+
+        if (movie == null) return View("NotFound");
+        return View(movie);
     }
 }
