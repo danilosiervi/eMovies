@@ -6,11 +6,6 @@ namespace eMovies.Models;
 
 public class Movie : IEntityBase
 {
-    public Movie()
-    {
-        Actors = new HashSet<ActorMovie>();
-    }
-
     [Key]
     public int Id { get; set; }
 

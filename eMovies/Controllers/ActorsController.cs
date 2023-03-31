@@ -1,7 +1,6 @@
 ﻿using eMovies.Models;
 using eMovies.Services.ActorsServices;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.CompilerServices;
 
 namespace eMovies.Controllers;
 
