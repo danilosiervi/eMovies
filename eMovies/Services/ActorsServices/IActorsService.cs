@@ -1,12 +1,8 @@
-﻿using eMovies.Models;
+﻿using eMovies.Data.Base;
+using eMovies.Models;
 
 namespace eMovies.Services.ActorsServices;
 
-public interface IActorsService
+public interface IActorsService : IEntityBaseRepository<Actor>
 {
-    Task<IEnumerable<Actor>> GetAllAsync();
-    Task<Actor> GetByIdAsync(int id);
-    Task AddAsync(Actor actor);
-    Task<Actor> UpdateAsync(int id, Actor newActor);
-    Task DeleteAsync(int id);
 }
