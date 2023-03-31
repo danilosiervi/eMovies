@@ -1,6 +1,7 @@
 ﻿using eMovies.Models;
 using eMovies.Services.MoviesServices;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace eMovies.Controllers;
 
@@ -19,9 +20,33 @@ public class MoviesController : Controller
         return View(data);
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        var movieDropdownsData = await _services.GetNewMovieDropdownsValues();
+
+        ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+        ViewBag.Directors = new SelectList(movieDropdownsData.Directors, "Id", "Name");
+        ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "Name");
+
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(NewMovieVM movie)
+    {
+        if (!ModelState.IsValid)
+        {
+            var movieDropdownsData = await _services.GetNewMovieDropdownsValues();
+
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Directors = new SelectList(movieDropdownsData.Directors, "Id", "Name");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "Name");
+
+            return View(movie);
+        }
+
+        await _services.AddNewMovieAsync(movie);
+        return RedirectToAction(nameof(Index));
     }
 
     public async Task<IActionResult> Details(int id)
