@@ -6,6 +6,8 @@ namespace eMovies.Models;
 
 public class NewMovieVM
 {
+    public int Id { get; set; }
+
     [Required(ErrorMessage = "Name is required")]
     [Display(Name = "Movie Name")]
     public string Name { get; set; }

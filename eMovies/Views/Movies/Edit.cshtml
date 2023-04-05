@@ -2,18 +2,18 @@
 @model NewMovieVM
 
 @{
-    ViewData["Title"] = "Create a new movie";
+    ViewData["Title"] = "Update movie";
 }
 
 <div class="row">
     <div class="col-md-8 offset-2">
         <p>
-            <h4>Create a new movie</h4>
+            <h4>Update movie</h4>
         </p>
 
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Create">
+                <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="row">
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
                     </div>
                 </form>
@@ -93,9 +93,14 @@
 
 @section Scripts{
     <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $("#ImageURL").val();
+        });
+
         $("#ImageURL").on("change", function () {
             var output = document.getElementById("ImageUrlPreview");
             output.src = $(this).val();
-        })
+        });
     </script>
 }

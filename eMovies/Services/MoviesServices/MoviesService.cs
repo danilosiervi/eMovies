@@ -68,4 +68,40 @@ public class MoviesService : EntityBaseRepository<Movie>, IMoviesService
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task UpdateMovieAsync(NewMovieVM movie)
+    {
+        var dbMovie = await _context.Movies.FirstOrDefaultAsync(m => m.Id == movie.Id);
+
+        if (dbMovie != null)
+        {
+            dbMovie.Name = movie.Name;
+            dbMovie.Description = movie.Description;
+            dbMovie.Price = movie.Price;
+            dbMovie.ImageURL = movie.ImageURL;
+            dbMovie.StartDate = movie.StartDate;
+            dbMovie.EndDate = movie.EndDate;
+            dbMovie.Category = movie.Category;
+            dbMovie.CinemaId = movie.CinemaId;
+            dbMovie.DirectorId = movie.DirectorId;
+
+            await _context.SaveChangesAsync();
+        }
+
+        var existingActorsDb = await _context.Actors_Movies.Where(am => am.MovieId == movie.Id).ToListAsync();
+        _context.Actors_Movies.RemoveRange(existingActorsDb);
+        await _context.SaveChangesAsync();
+
+        foreach (var actorId in movie.ActorsIds)
+        {
+            var newActorMovie = new ActorMovie()
+            {
+                MovieId = movie.Id,
+                ActorId = actorId
+            };
+
+            await _context.Actors_Movies.AddAsync(newActorMovie);
+            await _context.SaveChangesAsync();
+        }
+    }
 }
