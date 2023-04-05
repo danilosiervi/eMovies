@@ -34,6 +34,11 @@ public class AppDbContext : DbContext
             .HasOne(m => m.Director)
             .WithMany(p => p.Movies)
             .HasForeignKey(m => m.DirectorId);
+
+        modelBuilder.Entity<Order>()
+            .HasMany(o => o.OrderItems)
+            .WithOne(oi => oi.Order)
+            .HasForeignKey(oi => oi.OrderId);
     }
 
     public DbSet<Movie> Movies { get; set; }
@@ -41,4 +46,7 @@ public class AppDbContext : DbContext
     public DbSet<Cinema> Cinemas { get; set; }
     public DbSet<Director> Directors { get; set; }
     public DbSet<ActorMovie> Actors_Movies { get; set; }
+
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
 }
