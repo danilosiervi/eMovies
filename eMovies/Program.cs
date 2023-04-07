@@ -1,4 +1,5 @@
 using eMovies.Data;
+using eMovies.Data.Cart;
 using eMovies.Services.ActorsServices;
 using eMovies.Services.CinemasServices;
 using eMovies.Services.DirectorsServices;
@@ -20,6 +21,10 @@ builder.Services.AddScoped<IDirectorsService, DirectorsService>();
 builder.Services.AddScoped<ICinemasService, CinemaService>();
 builder.Services.AddScoped<IMoviesService, MoviesService>();
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +39,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

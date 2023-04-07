@@ -15,10 +15,23 @@ public class ShoppingCart
         _context = context;
     }
 
-    public async void AddItemToCart(Movie movie)
+    public static ShoppingCart GetShoppingCart(IServiceProvider services)
     {
-        var shoppingCartItem =  await _context.ShoppingCartItems
-            .FirstOrDefaultAsync(s => s.Movie.Id == movie.Id && s.ShoppingCartId == ShoppingCartId);
+        ISession session = services.GetRequiredService<IHttpContextAccessor>()?
+            .HttpContext.Session;
+
+        var context = services.GetService<AppDbContext>();
+        string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+
+        session.SetString("CartId", cartId);
+
+        return new ShoppingCart(context) { ShoppingCartId = cartId };
+    }
+
+    public void AddItemToCart(Movie movie)
+    {
+        var shoppingCartItem =  _context.ShoppingCartItems
+            .FirstOrDefault(s => s.Movie.Id == movie.Id && s.ShoppingCartId == ShoppingCartId);
 
         if (shoppingCartItem == null)
         {
@@ -29,20 +42,20 @@ public class ShoppingCart
                 Amount = 1
             };
 
-            await _context.ShoppingCartItems.AddAsync(shoppingCartItem);
+            _context.ShoppingCartItems.Add(shoppingCartItem);
         }
         else
         {
             shoppingCartItem.Amount++;
         }
 
-        await _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
-    public async void RemoveItemFromCart(Movie movie)
+    public void RemoveItemFromCart(Movie movie)
     {
-        var shoppingCartItem = await _context.ShoppingCartItems
-            .FirstOrDefaultAsync(s => s.Movie.Id == movie.Id && s.ShoppingCartId == ShoppingCartId);
+        var shoppingCartItem = _context.ShoppingCartItems
+            .FirstOrDefault(s => s.Movie.Id == movie.Id && s.ShoppingCartId == ShoppingCartId);
 
         if (shoppingCartItem != null)
         {
@@ -53,20 +66,20 @@ public class ShoppingCart
             }
         }
 
-        await _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
-    public async Task<List<ShoppingCartItem>> GetShoppingCartItems()
+    public List<ShoppingCartItem> GetShoppingCartItems()
     {
-        return ShoppingCartItems ??= await _context.ShoppingCartItems
+        return ShoppingCartItems ??= _context.ShoppingCartItems
             .Where(s => s.ShoppingCartId == ShoppingCartId)
             .Include(s => s.Movie)
-            .ToListAsync();
+            .ToList();
     }
 
-    public async Task<double> GetShoppingCartTotal()
+    public double GetShoppingCartTotal()
     {
-        return await _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
-            .Select(s => s.Movie.Price * s.Amount).SumAsync();
+        return _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
+            .Select(s => s.Movie.Price * s.Amount).Sum();
     }
 }
