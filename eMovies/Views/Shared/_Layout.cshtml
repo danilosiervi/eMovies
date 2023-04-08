@@ -42,8 +42,15 @@
                     </form>
 
                     <ul class="navbar-nav">
-                        @await Component.InvokeAsync("ShoppingCartSummary");
+                        @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
+
+                    <div>
+                        <a class="btn btn-outline-success">
+                            <i class="bi bi-person-badge"></i> Hello User
+                        </a>
+                        <a class="nav-link" asp-controller="Orders" asp-action="Index"><i class="bi bi-list">Orders</i></a>
+                    </div>
                 </div>
             </div>
         </nav>
