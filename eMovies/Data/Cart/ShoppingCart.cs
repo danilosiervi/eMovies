@@ -82,4 +82,13 @@ public class ShoppingCart
         return _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
             .Select(s => s.Movie.Price * s.Amount).Sum();
     }
+
+    public async Task ClearShoppingCartAsync()
+    {
+        var items = await _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
+            .ToListAsync();
+
+        _context.ShoppingCartItems.RemoveRange(items);
+        await _context.SaveChangesAsync();
+    }
 }
