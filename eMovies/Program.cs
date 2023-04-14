@@ -1,10 +1,13 @@
 using eMovies.Data;
 using eMovies.Data.Cart;
+using eMovies.Models;
 using eMovies.Services.ActorsServices;
 using eMovies.Services.CinemasServices;
 using eMovies.Services.DirectorsServices;
 using eMovies.Services.MoviesServices;
 using eMovies.Services.OrdersService;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +28,14 @@ builder.Services.AddScoped<IOrdersService, OrdersService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddAuthentication(opts =>
+{
+    opts.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
 
 var app = builder.Build();
 
@@ -44,6 +54,8 @@ app.UseRouting();
 
 app.UseSession();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -51,5 +63,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 Seed.GenerateSeed(app);
+Seed.SeedUsersAndRolesAsync(app).Wait();
 
 app.Run();

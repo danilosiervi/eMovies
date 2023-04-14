@@ -1,5 +1,6 @@
 ﻿using eMovies.Models;
 using eMovies.Models.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace eMovies.Data;
 
@@ -240,6 +241,53 @@ public class Seed
                 }
             });
             context.SaveChanges();
+        }
+    }
+
+    public static async Task SeedUsersAndRolesAsync(IApplicationBuilder appBuilder)
+    {
+        using var serviceScope = appBuilder.ApplicationServices.CreateScope();
+        var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+        {
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+        }
+        if (!await roleManager.RoleExistsAsync(UserRoles.User))
+        {
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+        }
+
+        var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+        var adminUser = await userManager.FindByEmailAsync("admin@emovies.com");
+        if (adminUser == null)
+        {
+            var newAdminUser = new User()
+            {
+                FullName = "Admin User",
+                UserName = "Admin",
+                Email = "admin@emovies.com",
+                EmailConfirmed = true
+            };
+
+            await userManager.CreateAsync(newAdminUser, "Admin@123");
+            await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+        }
+
+        var user = await userManager.FindByEmailAsync("user@emovies.com");
+        if (user == null)
+        {
+            var newUser = new User()
+            {
+                FullName = "Simple User",
+                UserName = "User",
+                Email = "user@emovies.com",
+                EmailConfirmed = true
+            };
+
+            await userManager.CreateAsync(newUser, "User@123");
+            await userManager.AddToRoleAsync(newUser, UserRoles.User);
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using eMovies.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace eMovies.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<User>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
@@ -39,6 +40,8 @@ public class AppDbContext : DbContext
             .HasMany(o => o.OrderItems)
             .WithOne(oi => oi.Order)
             .HasForeignKey(oi => oi.OrderId);
+
+        base.OnModelCreating(modelBuilder);
     }
 
     public DbSet<Movie> Movies { get; set; }

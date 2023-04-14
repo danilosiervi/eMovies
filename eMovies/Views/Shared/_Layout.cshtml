@@ -37,19 +37,21 @@
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0" asp-controller="Movies" asp-action="Filter" style="padding-right: 25px;">
-                        <input name="searchString" type="text" class="form-control" placeholder="Search for a movie...">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                        <input name="searchString" type="text" class="form-control" style="display: inline-block; width: 70%;" placeholder="Search for a movie...">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="display: inline-block;"><i class="bi bi-search"></i></button>
                     </form>
 
                     <ul class="navbar-nav">
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
 
+                    <a class="btn btn-outline-success my-2 my-sm-0" asp-controller="Users" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i>Log In</a>
+                    <a class="btn btn-outline-primary my-2 my-sm-0" asp-controller="Users" asp-action="Signup"><i class="bi bi-person-plus"></i>Sign Up</a>
+
                     <div>
-                        <a class="btn btn-outline-success">
+                        <a class="btn btn-outline-success" asp-controller="Orders" asp-action="Index">
                             <i class="bi bi-person-badge"></i> Hello User
                         </a>
-                        <a class="nav-link" asp-controller="Orders" asp-action="Index"><i class="bi bi-list">Orders</i></a>
                     </div>
                 </div>
             </div>
