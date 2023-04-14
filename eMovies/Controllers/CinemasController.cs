@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eMovies.Controllers;
 
-[Authorize = UserRoles.Admin]
+[Authorize(Roles = UserRoles.Admin)]
 public class CinemasController : Controller
 {
     private readonly ICinemasService _service;
