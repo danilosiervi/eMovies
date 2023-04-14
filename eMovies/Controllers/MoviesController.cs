@@ -1,10 +1,13 @@
-﻿using eMovies.Models;
+﻿using eMovies.Data;
+using eMovies.Models;
 using eMovies.Services.MoviesServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace eMovies.Controllers;
 
+[Authorize(Roles = UserRoles.Admin)]
 public class MoviesController : Controller
 {
     private readonly IMoviesService _services;
@@ -14,12 +17,14 @@ public class MoviesController : Controller
         _services = services;
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Index()
     {
         var data = await _services.GetAllAsync(m => m.Cinema);
         return View(data);
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Filter(string searchString)
     {
         var allMovies = await _services.GetAllAsync(m => m.Cinema, m => m.Director, m => m.Actors);
@@ -70,6 +75,7 @@ public class MoviesController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Details(int id)
     {
         var movie = await _services.GetMovieByIdAsync(id);

@@ -1,9 +1,12 @@
-﻿using eMovies.Models;
+﻿using eMovies.Data;
+using eMovies.Models;
 using eMovies.Services.CinemasServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eMovies.Controllers;
 
+[Authorize = UserRoles.Admin]
 public class CinemasController : Controller
 {
     private readonly ICinemasService _service;
@@ -13,6 +16,7 @@ public class CinemasController : Controller
         _service = service;
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Index()
     {
         var data = await _service.GetAllAsync();
@@ -37,6 +41,7 @@ public class CinemasController : Controller
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> Details(int id)
     {
         var cinema = await _service.GetByIdAsync(id);

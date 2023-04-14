@@ -21,6 +21,17 @@ else
         </a>
     </div>
 
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <span style="padding: 5px;"></span>
+
+        <div>
+            <a class="btn btn-outline-secondary" asp-controller="Users" asp-action="Users">
+                <i class="bi bi-people"></i>Users
+            </a>
+        </div>
+    }
+
     <span style="padding: 5px;"></span>
 
     <form asp-controller="Users" asp-action="Logout">

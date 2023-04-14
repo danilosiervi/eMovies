@@ -1,9 +1,12 @@
-﻿using eMovies.Models;
+﻿using eMovies.Data;
+using eMovies.Models;
 using eMovies.Services.DirectorsServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eMovies.Controllers;
 
+[Authorize(Roles = UserRoles.Admin)]
 public class DirectorsController : Controller
 {
     private readonly IDirectorsService _service;
@@ -13,6 +16,7 @@ public class DirectorsController : Controller
         _service = service;
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Index()
     {
         var data = await _service.GetAllAsync();
@@ -37,6 +41,7 @@ public class DirectorsController : Controller
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> Details(int id)
     {
         var director = await _service.GetByIdAsync(id);

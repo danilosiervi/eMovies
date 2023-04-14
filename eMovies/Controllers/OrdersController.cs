@@ -2,11 +2,13 @@
 using eMovies.Data.ViewModels;
 using eMovies.Services.MoviesServices;
 using eMovies.Services.OrdersService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace eMovies.Controllers;
 
+[Authorize]
 public class OrdersController : Controller
 {
     private readonly IMoviesService _moviesService;
@@ -19,7 +21,7 @@ public class OrdersController : Controller
         _ordersService = ordersService;
         _shoppingCart = shoppingCart;
     }
-    
+
     public async Task<IActionResult> Index()
     {
         string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -3,7 +3,7 @@ using eMovies.Data.ViewModels;
 using eMovies.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace eMovies.Controllers;
 
@@ -77,5 +77,16 @@ public class UsersController : Controller
     {
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Movies");
+    }
+
+    public async Task<IActionResult> Users()
+    {
+        var users = await _context.Users.ToListAsync();
+        return View(users);
+    }
+
+    public IActionResult AccessDenied(string returnUrl)
+    {
+        return View(returnUrl);
     }
 }
