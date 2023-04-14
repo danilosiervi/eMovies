@@ -3,6 +3,7 @@ using eMovies.Data.ViewModels;
 using eMovies.Services.MoviesServices;
 using eMovies.Services.OrdersService;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace eMovies.Controllers;
 
@@ -21,9 +22,10 @@ public class OrdersController : Controller
     
     public async Task<IActionResult> Index()
     {
-        string userId = "";
-        var orders = await _ordersService.GetOrdersByUserIdAsync(userId);
+        string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        string userRole = User.FindFirstValue(ClaimTypes.Role);
 
+        var orders = await _ordersService.GetOrdersByUserIdAsync(userId, userRole);
         return View(orders);
     }
 
@@ -68,8 +70,8 @@ public class OrdersController : Controller
     public async Task<IActionResult> CompleteOrder()
     {
         var items = _shoppingCart.GetShoppingCartItems();
-        string userId = "";
-        string userEmail = "";
+        string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        string userEmail = User.FindFirstValue(ClaimTypes.Email);
 
         await _ordersService.StoreOrderAsync(items, userId, userEmail);
         await _shoppingCart.ClearShoppingCartAsync();

@@ -173,71 +173,60 @@ public class Seed
                 new ActorMovie()
                 {
                     MovieId = 1,
-                    ActorId = 1,
-                    Character = "Frodo Baggins"
+                    ActorId = 1
                 },
                 new ActorMovie()
                 {
                     MovieId = 1,
-                    ActorId = 2,
-                    Character = "Gandalf The Gray"
+                    ActorId = 2
                 },
                 new ActorMovie()
                 {
                     MovieId = 1,
-                    ActorId = 3,
-                    Character = "Legolas"
+                    ActorId = 3
                 },
 
                 new ActorMovie()
                 {
                     MovieId = 2,
-                    ActorId = 1,
-                    Character = "Frodo Baggins"
+                    ActorId = 1
                 },
                 new ActorMovie()
                 {
                     MovieId = 2,
-                    ActorId = 2,
-                    Character = "Gandalf The Gray"
+                    ActorId = 2
                 },
                 new ActorMovie()
                 {
                     MovieId = 2,
-                    ActorId = 3,
-                    Character = "Legolas"
+                    ActorId = 3
                 },
 
                 new ActorMovie()
                 {
                     MovieId = 3,
-                    ActorId = 1,
-                    Character = "Frodo Baggins"
+                    ActorId = 1
                 },
                 new ActorMovie()
                 {
                     MovieId = 3,
-                    ActorId = 2,
-                    Character = "Gandalf The Gray"
+                    ActorId = 2
                 },
                 new ActorMovie()
                 {
                     MovieId = 3,
-                    ActorId = 3,
-                    Character = "Legolas"
+                    ActorId = 3
                 },
 
                 new ActorMovie()
                 {
                     MovieId = 4,
-                    ActorId = 4,
-                    Character = "Alan Turing"
+                    ActorId = 4
                 },
                 new ActorMovie()
                 {
                     MovieId = 4,
-                    ActorId = 5,
-                    Character = "Joan Clarke"
+                    ActorId = 5
                 }
             });
             context.SaveChanges();

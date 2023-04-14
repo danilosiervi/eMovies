@@ -94,8 +94,7 @@ namespace eMovies.Migrations
                 columns: table => new
                 {
                     ActorId = table.Column<int>(type: "int", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: false),
-                    Character = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    MovieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

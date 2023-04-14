@@ -40,11 +40,18 @@ public class OrdersService : IOrdersService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<Order>> GetOrdersByUserIdAsync(string userId)
+    public async Task<List<Order>> GetOrdersByUserIdAsync(string userId, string userRole)
     {
-        return await _context.Orders
+        var orders =  await _context.Orders
             .Include(o => o.OrderItems).ThenInclude(oi => oi.Movie)
-            .Where(o => o.UserId == userId)
+            .Include(o => o.User)
             .ToListAsync();
+
+        if (userRole != "Admin")
+        {
+            orders = orders.Where(o => o.UserId == userId).ToList();
+        }
+
+        return orders;
     }
 }
