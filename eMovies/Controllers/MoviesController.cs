@@ -31,9 +31,14 @@ public class MoviesController : Controller
 
         if (!string.IsNullOrEmpty(searchString))
         {
-            var filteredResult = allMovies.Where(m => 
-                string.Equals(m.Name, searchString, StringComparison.CurrentCultureIgnoreCase) ||
-                string.Equals(m.Description, searchString, StringComparison.CurrentCultureIgnoreCase));
+            var normalizedSearchString = searchString.ToLower();
+
+            var filteredResult = allMovies
+                .Where(m => m.Name.ToLower().Contains(normalizedSearchString) ||
+                m.Description.ToLower().Contains(normalizedSearchString) ||
+                m.Director.Name.ToLower().Contains(normalizedSearchString) ||
+                m.Cinema.Name.ToLower().Contains(normalizedSearchString)
+                ).ToList();
 
             return View("Index", filteredResult);
         }
