@@ -85,6 +85,51 @@ public class Seed
                     Name = "Keira Knightley",
                     ProfilePictureURL = "https://th.bing.com/th/id/OIP.ZZHTh3fgECEkEHrzORJtcQHaHa?pid=ImgDet&rs=1",
                     Bio = "Keira Christina Righton OBE is an English actress. Known for her work in both independent films and blockbusters, particularly period dramas, she has received several accolades."
+                },
+
+                new Actor()
+                {
+                    Name = "Pedro Pascal",
+                    ProfilePictureURL = "https://akns-images.eonline.com/eol_images/Entire_Site/2021118/rs_1024x759-210218040505-t6bigstock-Pedro-Pascal-at-the-World-prem-339979147.jpg?fit=around%7C1080:1080&output-quality=90&crop=1080:1080;center,top",
+                    Bio = "José Pedro Balmaceda Pascal is a Chilean-born American actor. Since 2023, he has played Joel Miller in the HBO drama series The Last of Us. Time magazine named him one of the 100 most influential people in the world in 2023"
+                },
+                new Actor()
+                {
+                    Name = "Bella Ramsey",
+                    ProfilePictureURL = "https://justbiography.com/wp-content/uploads/2020/06/95cf15c1a5fe0f044922cd8a0ebb4c662d-Bella-Ramsey.rsquare.w700.jpg",
+                    Bio = "Isabella May Ramsey (born September 2003) is an English actor. Ramsey was cast in the lead role of Ellie for the HBO adaptation of the 2013 video game The Last of Us alongside fellow Game of Thrones alumnus Pedro Pascal."
+                },
+
+                new Actor()
+                {
+                    Name = "Joe Locke",
+                    ProfilePictureURL = "https://th.bing.com/th/id/R.539e810ad9d4600ed47080e912a98c94?rik=kdVh4Cr8hVZsHA&pid=ImgRaw&r=0",
+                    Bio = "Joseph William Locke (born 24 September 2003) is a Manx actor. He is known for his lead role as Charlie Spring in the Netflix teen series Heartstopper (since 2022), for which he received a nomination for the Children's and Family Emmy Award for Outstanding Lead Performance"
+                },
+                new Actor()
+                {
+                    Name = "Kit Connor",
+                    ProfilePictureURL = "https://i.pinimg.com/736x/7e/a0/57/7ea0576b3e89ba2576b41ce3fa6a244a.jpg",
+                    Bio = "Kit Sebastian Connor (born 8 March 2004) is an English actor. He gained recognition for his starring role as Nick Nelson in the Netflix teen series Heartstopper, for which he won the Children's and Family Emmy Award for Outstanding Lead Performance in 2022."
+                },
+
+                new Actor()
+                {
+                    Name = "Tobey Maguire",
+                    ProfilePictureURL = "https://th.bing.com/th/id/R.5539fa5d3c49817bbd0b191a763c836c?rik=lcqTHAeef7IMTA&pid=ImgRaw&r=0",
+                    Bio = "Tobias Vincent Maguireis an American actor and film producer. He is known for playing the title character from Sam Raimi's Spider-Man trilogy (2002–2007), a role he reprised in 2021's Spider-Man: No Way Home."
+                },
+                new Actor()
+                {
+                    Name = "Andrew Garfield",
+                    ProfilePictureURL = "https://th.bing.com/th/id/OIP.QmXupQXxGriV1U6ooStOyQHaGD?pid=ImgDet&rs=1",
+                    Bio = "Andrew Russell Garfield is an English and American actor. He has received various accolades, including a Tony Award, a BAFTA TV Award and a Golden Globe Award, in addition to nominations for a Primetime Emmy Award, a Laurence Olivier Award and two Academy Awards. Time included Garfield on its list of 100 most influential people in the world in 2022."
+                },
+                new Actor()
+                {
+                    Name = "Tom Holland",
+                    ProfilePictureURL = "https://th.bing.com/th/id/OIP.rfqQY89Gaq1zVYqdOYIBKAHaGN?pid=ImgDet&rs=1",
+                    Bio = "Thomas Stanley Holland (born 1 June 1996) is an English actor. His accolades include a British Academy Film Award and three Saturn Awards. Some publications have called him one of the most popular actors of his generation."
                 }
             });
             context.SaveChanges();
@@ -105,6 +150,24 @@ public class Seed
                     Name = "Morten Tyldum",
                     ProfilePictureURL = "https://th.bing.com/th/id/R.3478f542495a87507dec59151e65e7f1?rik=HY17OPde2lbYYA&riu=http%3a%2f%2fwww.indiewire.com%2fwp-content%2fuploads%2f2016%2f06%2fmorten-tyldum-for-indiewire.jpg%3fw%3d780&ehk=ovQdzoOwS7rQhkLtnUxPLWyiHPImjrWT1QdHyBwq%2bZI%3d&risl=&pid=ImgRaw&r=0",
                     Bio = "Morten Tyldum (born 19 May 1967) is a Norwegian film director. He is best known in his native Norway for directing the thriller film Headhunters (2011), based on the novel by Jo Nesbø, and internationally for directing the historical drama The Imitation Game (2014), for which he was nominated for the Academy Award for Best Director."
+                },
+                new Director()
+                {
+                    Name = "Neil Druckmann",
+                    ProfilePictureURL = "https://th.bing.com/th/id/OIP.RR3KHa9rLirIu1-GXC-ArQHaGe?pid=ImgDet&rs=1",
+                    Bio = "Neil Druckmann is an Israeli-American writer, creative director, designer, and programmer who has been co-president (alongside Evan Wells) of the video game developer Naughty Dog since 2020. He is best known for his work on the Naughty Dog game franchises Uncharted and The Last of Us, having co-created the latter."
+                },
+                new Director()
+                {
+                    Name = "Euros Lyn",
+                    ProfilePictureURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Euros_Lyn.jpg/330px-Euros_Lyn.jpg",
+                    Bio = "Euros Lyn is a Welsh film and television director, best known for his work in Doctor Who, Sherlock, Black Mirror, Daredevil, His Dark Materials and Heartstopper."
+                },
+                new Director()
+                {
+                    Name = "Jon Watts",
+                    ProfilePictureURL = "https://marriedbiography.com/wp-content/uploads/2017/06/jon-watts.jpg",
+                    Bio = "Jonathan Watts (born June 28, 1981) is an American filmmaker. His credits include directing the Marvel Cinematic Universe (MCU) superhero films Spider-Man: Homecoming, Spider-Man: Far From Home, and Spider-Man: No Way Home."
                 }
             });
             context.SaveChanges();
@@ -161,6 +224,42 @@ public class Seed
                     CinemaId = 2,
                     DirectorId = 2,
                     Category = MovieCategory.War
+                },
+                new Movie()
+                {
+                    Name = "The Last Of Us",
+                    Description = "Joel and Ellie, a pair connected through the harshness of the world they live in, are forced to endure brutal circumstances and ruthless killers on a trek across post-pandemic America.",
+                    Price = 10.99,
+                    ImageURL = "https://th.bing.com/th/id/OIP.cjEyrzS-AS64hdQaCSDqMgHaK9?pid=ImgDet&rs=1",
+                    StartDate = DateTime.Now.AddDays(-20),
+                    EndDate = DateTime.Now.AddDays(-5),
+                    CinemaId = 5,
+                    DirectorId = 3,
+                    Category = MovieCategory.Action
+                },
+                new Movie()
+                {
+                    Name = "Heartstopper",
+                    Description = "Heartstopper is a British coming-of-age romantic comedy-drama television series on Netflix, adapted from the webcomic and graphic novel of the same name by Alice Oseman. Written by Oseman herself, the series primarily tells the story of Charlie Spring, a gay schoolboy who falls in love with classmate Nick Nelson, whom he sits next to in his new form. It also explores the lives of their friends Tao, Elle, Tara and Darcy.",
+                    Price = 34.99,
+                    ImageURL = "https://th.bing.com/th/id/R.ace726b5bdb2b4ace671862540aca2d2?rik=BzgRIjxT7OV1KA&pid=ImgRaw&r=0",
+                    StartDate = DateTime.Now.AddDays(3),
+                    EndDate = DateTime.Now.AddDays(13),
+                    CinemaId = 4,
+                    DirectorId = 4,
+                    Category = MovieCategory.Drama
+                },
+                new Movie()
+                {
+                    Name = "Spider Man: No Way Home",
+                    Description = "Spider-Man: No Way Home is a 2021 American superhero film based on the Marvel Comics character Spider-Man, co-produced by Columbia Pictures and Marvel Studios and distributed by Sony Pictures Releasing. It is the sequel to Spider-Man: Homecoming (2017) and Spider-Man: Far From Home (2019).",
+                    Price = 23.49,
+                    ImageURL = "https://i2.wp.com/trendienewz.com/wp-content/uploads/2021/11/Spider-Man_-_No_Way_Home_Poster_2.jpg?w=1080&ssl=1",
+                    StartDate = DateTime.Now.AddDays(10),
+                    EndDate = DateTime.Now.AddDays(30),
+                    CinemaId = 1,
+                    DirectorId = 5,
+                    Category = MovieCategory.Action
                 }
             });
             context.SaveChanges();
@@ -227,6 +326,44 @@ public class Seed
                 {
                     MovieId = 4,
                     ActorId = 5
+                },
+
+                new ActorMovie()
+                {
+                    MovieId = 5,
+                    ActorId = 6
+                },
+                new ActorMovie()
+                {
+                    MovieId = 5,
+                    ActorId = 7
+                },
+
+                new ActorMovie()
+                {
+                    MovieId = 6,
+                    ActorId = 8
+                },
+                new ActorMovie()
+                {
+                    MovieId = 6,
+                    ActorId = 9
+                },
+
+                new ActorMovie()
+                {
+                    MovieId = 7,
+                    ActorId = 10
+                },
+                new ActorMovie()
+                {
+                    MovieId = 7,
+                    ActorId = 11
+                },
+                new ActorMovie()
+                {
+                    MovieId = 7,
+                    ActorId = 12
                 }
             });
             context.SaveChanges();
