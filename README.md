@@ -1,7 +1,5 @@
 # eMovies
 
-Url: https://emovies.azurewebsites.net/
-
 Building a fast and secure eCommerce application with ASP.NET MVC and Entity Framework Core.
 
 ## :computer: Technologies
